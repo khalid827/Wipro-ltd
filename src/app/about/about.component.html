@@ -1,0 +1,331 @@
+<div id="about">
+    <h1>Angular Directive</h1>
+    <p>
+        The Angular directive helps us to 
+        manipulate the DOM. You can change the appearance, 
+        behavior, or layout of a DOM element using 
+        the Directives.They help you to extend HTML
+    </p>
+    <br>
+    <p>There are three kinds of directives in Angular:</p>
+     
+    <ul>
+    <li>Component Directive</li>
+    <li>Structural directives</li>
+    <li>Attribute directives</li>
+    </ul>
+    <br>
+    
+    <h2>Component Directive</h2>
+    <p>
+        The Component is the main building block of an Angular Application.
+        The Component contains the data & user interaction logic that defines 
+        how the View looks and behaves. A view in Angular refers to a template (HTML).
+        The Angular Components are plain JavaScript classes and defined using 
+        @Component Decorator. This Decorator provides the component with the View to display & Metadata about the Component
+    </p>
+    <h4>Components are special directives in Angular. 
+        They are the directive with a template (view)</h4>
+    
+        <br>
+        <h2>Structural Directives</h2>
+       
+        <h4>Structural directives can change the DOM layout by adding and removing DOM elements.
+             All structural Directives are preceded by Asterix symbol.</h4>
+    <br>
+    <h3>ngFor</h3>
+    <br>
+    <p>The ngFor is an Angular structural directive, which repeats a portion of the HTML 
+        template once per each item from an iterable list (Collection).
+     </p>
+     <br>
+     <div *ngFor="let i  of  items;let m=index">
+           <ul>
+               <li>{{i}}-{{m}}</li>
+           </ul> 
+     </div>
+
+    <br>
+    <hr>
+
+    <div *ngFor="let j  of  qty">
+        <ul>
+            <li>{{j}}</li>
+        </ul> 
+  </div>
+  <hr>
+
+  <table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Marks</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!--using ngFor for each Row-->
+        <tr *ngFor="let student of STUDENTS">
+            <td>{{student.name | uppercase }}</td>
+            <td>{{student.age}}</td>
+            <td>{{student.marks }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr>
+
+<h1>{{title}}</h1>
+<ul>
+    <li *ngFor="let m of movie">
+        {{ m.title}} - {{m.director}}
+    </li>
+</ul>
+
+<hr>
+
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{title}}
+    </div>
+ 
+    <div class='panel-body'>
+        <div class='table-responsive'>
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Director</th>
+                        <th>Cast</th>
+                        <th>Release Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let movie of movie;">
+                        <td>{{movie.title}}</td>
+                        <td>{{movie.director}}</td>
+                        <td>{{movie.cast}}</td>
+                        <td>{{movie.releaseDate | date:'d/MMM/y'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class='card'>
+    <div class='card-header'>
+      <p>Nested Array</p>
+    </div>
+   
+    <div class='table-responsive'>
+      <table class='table table-bordered table-sm '>
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Mail ID</th>
+            <th>Skills</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees;">
+            <td>{{employee.name}}</td>
+            <td>{{employee.email}}</td>
+            <td>
+              <table class='table table-sm '>
+                <tbody>
+                  <tr *ngFor="let skill of employee.skills;">
+                    <td>{{skill.skill}}</td>
+                    <td>{{skill.exp}}</td>
+                  </tr>
+                </tbody>
+              </table>
+   
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+   
+  <hr>
+  <h1> *ngIf</h1>
+  <h3>
+      ngIf is used to display or hide the DOM Element based on the expression 
+      value assigned to it. The expression value may be either true or false.
+  </h3>
+  <br>
+
+  <div *ngIf="true">
+    <h2>This Text will be Displayed</h2>
+  </div>
+
+  <div *ngIf="false">
+    <h2>This Text will not be Displayed</h2>
+  </div>
+
+  <br>
+  <h1> *ngIf else</h1>
+<h3>The ngIf allows us to define optional else block using the ng-template</h3>
+<br>
+<div *ngIf="false;else elseBlock">
+  <h2>This Text will be Displayed when condition is True</h2>
+</div>
+<ng-template #elseBlock>
+  <h2>This Text will be Displayed when condition is False</h2>
+</ng-template>
+
+<br><br>
+<hr>
+<h1>Simple example of ngIf </h1>
+  
+  <div class="row">
+    Show <input type="checkbox" [(ngModel)]="showMe" />
+  </div>
+  
+  <h1>ngIf </h1>
+  
+  <p *ngIf="showMe">
+    ShowMe is checked
+  </p>
+  <p *ngIf="!showMe">
+    ShowMe is unchecked
+  </p>
+
+  <br>
+  <p *ngIf="showMe; else elseBlock1">
+    ShowMe is checked
+  </p>
+  
+  <ng-template #elseBlock1>
+    <p>ShowMe is checked Using elseBlock</p>
+  </ng-template>
+
+    <h1>If -Then -Else </h1>
+  
+  <p *ngIf="showMe; then thenBlock2 else elseBlock2">
+    This is not rendered
+  </p>
+  
+  <ng-template #thenBlock2>
+    <p>ShowMe is checked Using thenblock</p>
+  </ng-template>
+  
+  <ng-template #elseBlock2>
+    <p>ShowMe is unchecked Using elseBlock</p>
+  </ng-template>
+  
+  <br>
+  <hr>
+
+  <h1>ngSwitch Directive</h1>
+  <h3>The ngSwitch is an Angular directive, which allows us 
+  to display one or more DOM elements based on some 
+  pre-defined condition.</h3>
+  <br>
+  <div class='card'>
+    <div class='card-header'>
+      ngSwitch Example
+    </div>
+    <div class="card-body">
+      Input string : <input type='text' [(ngModel)]="num" />
+   
+      <div [ngSwitch]="num">
+        <div *ngSwitchCase="'1'">One</div>
+        <div *ngSwitchCase="'2'">Two</div>
+        <div *ngSwitchCase="'3'">Three</div>
+        <div *ngSwitchCase="'4'">Four</div>
+        <div *ngSwitchCase="'5'">Five</div>
+        <div *ngSwitchDefault>This is Default</div>
+      </div>
+    </div>
+  </div>
+ 
+  <br><br>
+  <hr>
+
+  <h1>Attribute Directives- ngStyle | ngClass  | ngModel</h1>
+  <h1>ngStyle Directive</h1>
+  <br>
+  <p>The Angular ngStyle directive allows us to set the many 
+    inline style of a HTML element using an expression. 
+    The expression can be evaluated at run time allowing us 
+    to dynamically change the style of our HTML element.</p>
+
+    <br>
+    <p [ngStyle]="{backgroundColor:getColor()}">Server with ID {{serverID}} is {{serverStatus}}. </p>
+    <br>
+    <p [ngStyle]="{backgroundColor:getColor()}">Server with ID {{serverID}} is {{serverStatus}}. </p>
+
+    <br>
+    <input [(ngModel)]="color" /> 
+    <div [ngStyle]="{'color': color}">Change my color</div>
+ 
+    <br>
+      <p [ngStyle]="{'color': 'purple',
+                'font-size': '30px',
+                'font-weight': 'bold'}">
+      Multiple styles
+    </p>
+    <br>
+    <br>
+    <h4>NgStyle</h4>
+  <ul *ngFor="let person of people">
+    <li [ngStyle]="{'color':getColor1(person.country)}"> 
+      {{ person.name }} ({{ person.country }}) (1)
+    </li>
+  </ul>
+
+  <br><br>
+
+  <h1>ngClass</h1>
+<br>
+<p>
+  The Angular ngClass Directive is an Angular Attribute Directive, which allows 
+  us to add or remove CSS classes to an HTML element. 
+  Using ngClass you can create dynamic styles in angular 
+  components by using conditional expressions.
+</p>
+<br>
+<div [ngClass]="'hello hello1'">Hello from ngClass</div>
+ 
+<br><br>
+ 
+<h4>NgClass</h4>
+<ul *ngFor="let person of people">
+  <li [ngClass]="{
+    'text-success':person.country === 'UK',
+    'text-primary':person.country === 'USA',
+    'text-danger':person.country === 'HK'
+  }">{{ person.name | uppercase }} ({{ person.country }})
+  </li>
+</ul>
+<br>
+<br>
+<hr>
+
+<h1>Two Way Data Binding</h1>
+<br>
+<h3>Two-way data binding refers to sharing data between a component class 
+  and its template.</h3>
+  <p>
+    If you change data in one place, it will automatically reflect at the other
+     end. For example, if you change the value of the input box, then it will 
+     also update the value of the attached property 
+    in a component class.
+  </p>
+  <h2>ngModel Directive</h2>
+  <p>The ngModel directive with [()] syntax (also known as banana box syntax) 
+    syncs values from the UI to a property and vice-versa. So, whenever the user 
+    changes the value on UI,
+     the corresponding property value will get automatically updated.</p>
+ 
+     <br><br>
+     <h2>Two Way Data Binding Demo</h2>
+     <input [(ngModel)]="city"> <br><br>
+ 
+     <h3>{{city}}</h3>
+
+</div>

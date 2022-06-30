@@ -1,0 +1,62 @@
+<h1>Employee Form -2 Way Data Binding</h1> 
+<p>
+  Two way data binding means that changes made to our model in the component 
+  are propagated to the view and that any changes made in the view are 
+  immediately updated in the underlying component data. 
+</p>
+<p>
+    Two way data binding is useful in data entry forms. 
+    Whenever a user makes changes to a form field, we would like to update our model. 
+    Similarly, when we update the model with new data, we would like to update the 
+    view as well
+</p> 
+<hr>
+<h2>Two Way Data Binding Example</h2>
+<h2>Template Driven Forms</h2>
+<!-- ngModel directive to achieve the two-way binding on HTML Form elements. It binds to a form element like input, select, selectarea. etc.
+It uses the ngModel in property, binding to bind to the value property
+
+The ngModel directive placed inside the square & parentheses .
+This is assigned to the Template Expression. 
+Template Expression is the property in the component class.
+
+The ngModel directive is not part of the Angular Core library. 
+It is part of the FormsModule library. 
+You need to import the FormsModule package into your Angular module in app.module.ts .
+-->
+<p>Enter Your Name : </p>
+<input type="text" name="fname" [(ngModel)]="a">   <!---->
+<p>Your Full Name is : {{a}}</p>
+<button (click)="clearValue()">Clear Name</button>
+
+<hr>
+<div class="container">  
+    <h1>Employee Form -2 Way Data Binding</h1> 
+    
+    <form (ngSubmit)=onSubmit() ngNativeValidate>  
+        <div>  
+          <label for="name">Name</label>  
+          <input type="text"  id="name" required  [(ngModel)]="emp.name" name="nme">  
+        </div>  
+        <div>  
+          <label for="dept">Department</label>  
+          <input type="text"  id="dept" required [(ngModel)]="emp.dept" name="det">  
+        </div> 
+        
+        <div>  
+          <label for="power">Employee Power</label>  
+          <select id="power" required  [(ngModel)]="emp.power" name="poer"> 
+            <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>  
+          </select>  
+        </div>  
+   
+        <input type="submit" value="Submit">
+      </form>  
+   
+      <div *ngIf="submitted">
+  <div><span>Name : </span>{{emp.name | uppercase }}</div>
+  <div><span>Department: </span>{{emp.dept}}</div>
+  <div><span>Power :</span>{{emp.power}}</div>
+  </div>
+ 
+</div>

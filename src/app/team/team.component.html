@@ -1,0 +1,38 @@
+<h1>Hello {{ s }}</h1>
+ 
+<h1>Team Members</h1>
+ 
+<ul *ngIf="users">
+  <li *ngFor="let user of users.data">
+    <img [src]="user.avatar">
+    <p>{{ user.first_name }} {{ user.last_name }} - Email : {{ user.email }}</p>
+  </li>
+</ul>
+
+<br>
+<br>
+<hr color="red">
+ Enter Employee Id: 
+  <input type="text" id="employeeId" name="employeeId" [(ngModel)]="employeeId">
+<h1> {{employeeId}}</h1>
+ 
+<button type="button" (click)="getAccounts()">Get Account Details</button>
+ 
+<h2>Consuming Spring Boot Micro Services in Angular</h2>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Employee Id</th>
+      <th scope="col">Account Id</th>
+      <th scope="col">Branch</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ac of Account">
+      <td>{{ac.empId}}</td>
+      <td>{{ac.accountId}}</td>
+      <td>{{ac.branch}}</td>
+     </tr>
+  </tbody>
+</table>
